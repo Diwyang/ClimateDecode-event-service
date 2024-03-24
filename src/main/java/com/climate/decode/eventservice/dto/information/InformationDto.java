@@ -1,6 +1,8 @@
 package com.climate.decode.eventservice.dto.information;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,4 +28,6 @@ public class InformationDto {
 	private OffsetDateTime eventEndDate;
 	private int totalNoOfDays;
 	private OffsetDateTime updatedDateTime;
+	private List<EventVenueDetailsDto> venueDetailList = new ArrayList<>();
+	private List<EventAttendeeDetailsDto> attendeeDetailsList = new ArrayList<>();
 }

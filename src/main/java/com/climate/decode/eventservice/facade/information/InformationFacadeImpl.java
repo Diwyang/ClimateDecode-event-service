@@ -2,6 +2,7 @@ package com.climate.decode.eventservice.facade.information;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import com.climate.decode.eventservice.converter.information.InformationConverte
 import com.climate.decode.eventservice.dto.information.EventAttendeeDetailsDto;
 import com.climate.decode.eventservice.dto.information.EventVenueDetailsDto;
 import com.climate.decode.eventservice.dto.information.InformationDto;
+import com.climate.decode.eventservice.dto.venue.VenueDetailsDto;
 import com.climate.decode.eventservice.entity.information.EventAttendeeDetails;
 import com.climate.decode.eventservice.entity.information.EventVenueDetails;
 import com.climate.decode.eventservice.entity.information.Information;
@@ -37,7 +39,26 @@ public class InformationFacadeImpl implements InformationFacade {
 		log.info("InformationFacadeImpl createInformationData {}", payload);
 		payload.setUpdatedDateTime(OffsetDateTime.now());
 		Information information= informationConverter.toEntity(payload);
-		return informationConverter.toDto(informationService.createInformationData(information));
+		InformationDto infoDto = informationConverter.toDto(informationService.createInformationData(information));
+		if(infoDto != null && payload.getAttendeeDetailsList() != null && !payload.getAttendeeDetailsList().isEmpty()) {
+			infoDto.setAttendeeDetailsList(new ArrayList<>());
+			Iterator<EventAttendeeDetailsDto> attendeeListItr = payload.getAttendeeDetailsList().iterator();
+			while(attendeeListItr.hasNext()) {
+				EventAttendeeDetailsDto dto = attendeeListItr.next();
+				infoDto.getAttendeeDetailsList().add(createAttendeeData(information.getEventId(), dto));
+			}
+		}
+		
+		if(infoDto != null && payload.getVenueDetailList() != null && !payload.getVenueDetailList().isEmpty()) {
+			infoDto.setVenueDetailList(new ArrayList<>());
+			Iterator<EventVenueDetailsDto> attendeeListItr = payload.getVenueDetailList().iterator();
+			while(attendeeListItr.hasNext()) {
+				EventVenueDetailsDto dto = attendeeListItr.next();
+				infoDto.getVenueDetailList().add(createVenueData(information.getEventId(), dto));
+			}
+		}
+		
+		return infoDto;
 	}
 
 	@Override
@@ -45,7 +66,10 @@ public class InformationFacadeImpl implements InformationFacade {
 		log.info("InformationFacadeImpl getInformationByEventId  {}", eventId);
 		Optional<Information> information = informationService.getInformationByEventId(eventId);
 		if(!information.isEmpty()) {
-			return informationConverter.toDto(information.get());
+			InformationDto infoDto = informationConverter.toDto(information.get());
+			infoDto.getAttendeeDetailsList().addAll(getAttendeeDataByEventId(eventId));
+			infoDto.getVenueDetailList().addAll(getVenueDataByEventId(eventId));
+			return infoDto;
 		} else {
 			throw new ResourceNotFoundException("Invalid Event Id "+eventId);
 		}

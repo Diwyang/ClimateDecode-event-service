@@ -22,7 +22,7 @@ public class Information {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "event_id", updatable = false, nullable = false, unique = true)
-	private Long eventId;
+	private Integer eventId;
 	
 	@Column(name="event_type")
 	private String eventType;
