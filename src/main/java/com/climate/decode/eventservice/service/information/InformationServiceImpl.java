@@ -5,11 +5,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.climate.decode.eventservice.entity.information.EventAttendeeDetails;
 import com.climate.decode.eventservice.entity.information.EventVenueDetails;
 import com.climate.decode.eventservice.entity.information.Information;
 import com.climate.decode.eventservice.exception.ResourceNotFoundException;
-import com.climate.decode.eventservice.repository.information.EventAttendeesRepository;
 import com.climate.decode.eventservice.repository.information.EventVenueRepository;
 import com.climate.decode.eventservice.repository.information.InformationRepository;
 
@@ -20,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 public class InformationServiceImpl implements InformationService {
 
 	private final InformationRepository informationRepo;
-	private final EventAttendeesRepository eventAttendeesRepo;
 	private final EventVenueRepository eventVenueRepo;
 	
 	@Override
@@ -67,49 +64,10 @@ public class InformationServiceImpl implements InformationService {
 		eventVenueRepo.delete(eventVenueDetails);
 	}
 
-	@Override
-	public EventVenueDetails updateVenueData(EventVenueDetails eventVenueDetails) {
-		if (eventVenueRepo.getByVenueId(eventVenueDetails.getVenueId()).isPresent()) {
-			eventVenueRepo.save(eventVenueDetails);
-			return eventVenueRepo.getByVenueId(eventVenueDetails.getVenueId()).get();
-		} else {
-			throw new ResourceNotFoundException("Venue not found with ID " + eventVenueDetails.getVenueId());
-		}
-	}
-
-	@Override
-	public EventAttendeeDetails createAttendeeData(EventAttendeeDetails eventAttendeeDetails) {
-		return eventAttendeesRepo.save(eventAttendeeDetails);
-	}
-
-	@Override
-	public List<EventAttendeeDetails> getAttendeeDataByEventId(Integer eventId) {
-		return eventAttendeesRepo.getByEventId(eventId);
-	}
-
-	@Override
-	public void deleteAttendeeData(EventAttendeeDetails eventAttendeeDetails) {
-			eventAttendeesRepo.delete(eventAttendeeDetails);
-	}
-
-	@Override
-	public EventAttendeeDetails updateAttendeeData(EventAttendeeDetails eventAttendeeDetails) {
-		if (eventAttendeesRepo.getByAttendeeId(eventAttendeeDetails.getAttendeeId()).isPresent()) {
-			eventAttendeesRepo.save(eventAttendeeDetails);
-			return eventAttendeesRepo.getByAttendeeId(eventAttendeeDetails.getAttendeeId()).get();
-		} else {
-			throw new ResourceNotFoundException("Attendees not found with ID " + eventAttendeeDetails.getAttendeeId());
-		}
-	}
 
 	@Override
 	public Optional<EventVenueDetails> getVenueDataByVenueId(Integer venueId) {
 		return eventVenueRepo.getByVenueId(venueId);
-	}
-
-	@Override
-	public Optional<EventAttendeeDetails> getAttendeeDataByAttendeeId(Integer attendeeId) {
-		return eventAttendeesRepo.getByAttendeeId(attendeeId);
 	}
 
 	@Override
@@ -123,9 +81,12 @@ public class InformationServiceImpl implements InformationService {
 	}
 
 	@Override
-	public Optional<EventAttendeeDetails> getAttendeeDataByEventIdAndAttendeeId(Integer eventId, Integer attendeeId) {
-		return eventAttendeesRepo.getAttendeeByEventIdAndAttendeeId(eventId, attendeeId);
+	public EventVenueDetails updateVenueData(EventVenueDetails eventVenueDetails) {
+		if (eventVenueRepo.getByVenueId(eventVenueDetails.getVenueId()).isPresent()) {
+			eventVenueRepo.save(eventVenueDetails);
+			return eventVenueRepo.getByVenueId(eventVenueDetails.getVenueId()).get();
+		} else {
+			throw new ResourceNotFoundException("Venue not found with ID " + eventVenueDetails.getVenueId());
+		}
 	}
-
-	
 }

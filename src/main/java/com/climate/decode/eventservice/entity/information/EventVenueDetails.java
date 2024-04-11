@@ -2,6 +2,7 @@ package com.climate.decode.eventservice.entity.information;
 
 import java.time.OffsetDateTime;
 
+import com.climate.decode.eventservice.enums.EventType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -27,11 +28,20 @@ public class EventVenueDetails {
 	@Column(name="event_id")
 	private int eventId;
 	
+	@Column(name="no_of_inperson_attendees")
+	private int noOfInPersonAttendees;
+	
+	@Column(name="no_of_virtual_attendees")
+	private int noOfVirtualAttendees;
+	
+	@Column(name="no_of_organizer_attendees")
+	private int noOfOrganizerAttendees;
+	
+	@Column(name="event_type")
+	private EventType eventType;
+	
 	@Column(name="size_of_venue")
 	private String sizeOfVenue;
-	
-	@Column(name="venue_name")
-	private String venueName;
 	
 	@Column(name="eventDateTime")
 	private OffsetDateTime eventDateTime;

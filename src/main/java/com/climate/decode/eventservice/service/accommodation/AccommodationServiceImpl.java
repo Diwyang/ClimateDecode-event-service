@@ -9,12 +9,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.climate.decode.eventservice.entity.accommodation.AccommodationDetails;
-import com.climate.decode.eventservice.entity.information.Information;
 import com.climate.decode.eventservice.exception.ResourceNotFoundException;
 import com.climate.decode.eventservice.repository.accommodation.AccommodationDetailsRepository;
-import com.climate.decode.eventservice.repository.information.EventAttendeesRepository;
-import com.climate.decode.eventservice.repository.information.EventVenueRepository;
-import com.climate.decode.eventservice.repository.information.InformationRepository;
 
 import lombok.RequiredArgsConstructor;
 

@@ -8,14 +8,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.climate.decode.eventservice.converter.information.EventAttendeeDetailConverter;
 import com.climate.decode.eventservice.converter.information.EventVenueDataConverter;
 import com.climate.decode.eventservice.converter.information.InformationConverter;
-import com.climate.decode.eventservice.dto.information.EventAttendeeDetailsDto;
 import com.climate.decode.eventservice.dto.information.EventVenueDetailsDto;
 import com.climate.decode.eventservice.dto.information.InformationDto;
-import com.climate.decode.eventservice.dto.venue.VenueDetailsDto;
-import com.climate.decode.eventservice.entity.information.EventAttendeeDetails;
 import com.climate.decode.eventservice.entity.information.EventVenueDetails;
 import com.climate.decode.eventservice.entity.information.Information;
 import com.climate.decode.eventservice.exception.ResourceNotFoundException;
@@ -32,7 +28,6 @@ public class InformationFacadeImpl implements InformationFacade {
 	private final InformationService informationService;
 	private final InformationConverter informationConverter;
 	private final EventVenueDataConverter eventVenueDataConverter;
-	private final EventAttendeeDetailConverter eventAttendeeDetailsConverter;
 	
 	@Override
 	public InformationDto createInformationData(InformationDto payload) {
@@ -40,14 +35,6 @@ public class InformationFacadeImpl implements InformationFacade {
 		payload.setUpdatedDateTime(OffsetDateTime.now());
 		Information information= informationConverter.toEntity(payload);
 		InformationDto infoDto = informationConverter.toDto(informationService.createInformationData(information));
-		if(infoDto != null && payload.getAttendeeDetailsList() != null && !payload.getAttendeeDetailsList().isEmpty()) {
-			infoDto.setAttendeeDetailsList(new ArrayList<>());
-			Iterator<EventAttendeeDetailsDto> attendeeListItr = payload.getAttendeeDetailsList().iterator();
-			while(attendeeListItr.hasNext()) {
-				EventAttendeeDetailsDto dto = attendeeListItr.next();
-				infoDto.getAttendeeDetailsList().add(createAttendeeData(information.getEventId(), dto));
-			}
-		}
 		
 		if(infoDto != null && payload.getVenueDetailList() != null && !payload.getVenueDetailList().isEmpty()) {
 			infoDto.setVenueDetailList(new ArrayList<>());
@@ -67,7 +54,6 @@ public class InformationFacadeImpl implements InformationFacade {
 		Optional<Information> information = informationService.getInformationByEventId(eventId);
 		if(!information.isEmpty()) {
 			InformationDto infoDto = informationConverter.toDto(information.get());
-			infoDto.getAttendeeDetailsList().addAll(getAttendeeDataByEventId(eventId));
 			infoDto.getVenueDetailList().addAll(getVenueDataByEventId(eventId));
 			return infoDto;
 		} else {
@@ -134,48 +120,6 @@ public class InformationFacadeImpl implements InformationFacade {
 	}
 
 	@Override
-	public EventAttendeeDetailsDto createAttendeeData(Integer eventId, EventAttendeeDetailsDto payload) {
-		log.info("InformationFacadeImpl createAttendeeData {}", payload);
-		if (informationService.getInformationByEventId(eventId).isPresent()) {
-			payload.setEventId(eventId);
-			payload.setUpdatedDateTime(OffsetDateTime.now());
-			EventAttendeeDetails eventAttendeeDetails = eventAttendeeDetailsConverter.toEntity(payload);
-			return eventAttendeeDetailsConverter.toDto(informationService.createAttendeeData(eventAttendeeDetails));
-		}
-		throw new ResourceNotFoundException("Invalid Event Id " + eventId);
-	}
-
-	@Override
-	public List<EventAttendeeDetailsDto> getAttendeeDataByEventId(Integer attendeeId) {
-		log.info("InformationFacadeImpl getAttendeeDataByEventId  {}", attendeeId);
-		List<EventAttendeeDetailsDto> lstEventAttendeeDetailsDto = new ArrayList<>();
-		List<EventAttendeeDetails> lstEventAttendeeDetail = informationService.getAttendeeDataByEventId(attendeeId);
-		for(EventAttendeeDetails eventAttendeeDetail : lstEventAttendeeDetail) {
-			lstEventAttendeeDetailsDto.add(eventAttendeeDetailsConverter.toDto(eventAttendeeDetail));
-		}
-		return lstEventAttendeeDetailsDto;
-	}
-
-	@Override
-	public String deleteAttendeeData(Integer eventId, Integer attendeeId) {
-		log.info("InformationFacadeImpl deleteAttendeeData");
-		Optional<EventAttendeeDetails> eventAttendeeDetails = informationService.getAttendeeDataByEventIdAndAttendeeId(eventId, attendeeId);
-		if(!eventAttendeeDetails.isEmpty()) {
-			informationService.deleteAttendeeData(eventAttendeeDetails.get());
-			return "Data deleted Successfully";
-		}
-		
-		throw new ResourceNotFoundException(String.format("Record Not Found with eventId {} and attendeeId {}", eventId.toString(), attendeeId.toString()));
-	}
-
-	@Override
-	public EventAttendeeDetailsDto updateAttendeeData(Integer eventId, EventAttendeeDetailsDto eventAttendeeDetailsDto) {
-		log.info("InformationFacadeImpl updateAttendeeData {} ", eventAttendeeDetailsDto);
-		eventAttendeeDetailsDto.setUpdatedDateTime(OffsetDateTime.now());
-		return eventAttendeeDetailsConverter.toDto(informationService.updateAttendeeData(eventAttendeeDetailsConverter.toEntity(eventAttendeeDetailsDto)));
-	}
-
-	@Override
 	public List<InformationDto> getInformationDetails() {
 		log.info("InformationFacadeImpl getInformationDetails");
 		List<InformationDto> lstInformationDto = new ArrayList<>();
@@ -193,15 +137,6 @@ public class InformationFacadeImpl implements InformationFacade {
 			return eventVenueDataConverter.toDto(informationService.getVenueDataByEventIdAndVenueId(eventId, venueId).get());
 		}
 		throw new ResourceNotFoundException(String.format("Record Not Found with eventId {} and venueId {}", eventId.toString(), venueId.toString()));
-	}
-
-	@Override
-	public EventAttendeeDetailsDto getAttendeeDataByEventIdAndAttendeeId(Integer eventId, Integer attendeeId) {
-		log.info("InformationFacadeImpl getAttendeeDataByEventIdAndAttendeeId");
-		if(!informationService.getAttendeeDataByEventIdAndAttendeeId(eventId, attendeeId).isEmpty()) {
-			return eventAttendeeDetailsConverter.toDto(informationService.getAttendeeDataByEventIdAndAttendeeId(eventId, attendeeId).get());
-		}
-		throw new ResourceNotFoundException(String.format("Record Not Found with eventId {} and attendeeId {}", eventId.toString(), attendeeId.toString()));
 	}
 
 }

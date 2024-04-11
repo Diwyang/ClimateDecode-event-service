@@ -29,5 +29,4 @@ public class InformationDto {
 	private int totalNoOfDays;
 	private OffsetDateTime updatedDateTime;
 	private List<EventVenueDetailsDto> venueDetailList = new ArrayList<>();
-	private List<EventAttendeeDetailsDto> attendeeDetailsList = new ArrayList<>();
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.climate.decode.eventservice.api.information.InformationApi;
-import com.climate.decode.eventservice.dto.information.EventAttendeeDetailsDto;
 import com.climate.decode.eventservice.dto.information.EventVenueDetailsDto;
 import com.climate.decode.eventservice.dto.information.InformationDto;
 import com.climate.decode.eventservice.facade.information.InformationFacade;
@@ -60,26 +59,6 @@ public class InformationContoller implements InformationApi {
 	}
 
 	@Override
-	public ApiResponse<EventAttendeeDetailsDto> createAttendeeData(Integer eventId, EventAttendeeDetailsDto eventAttendeeDetailsDto) {
-		return ApiResponse.ofSuccess(informationFacade.createAttendeeData(eventId, eventAttendeeDetailsDto),"Data save successfully");
-	}
-
-	@Override
-	public ApiResponse<List<EventAttendeeDetailsDto>> getAttendeeDataByEventId(Integer eventId) {
-		return ApiResponse.ofSuccess(informationFacade.getAttendeeDataByEventId(eventId));
-	}
-
-	@Override
-	public ApiResponse<String> deleteAttendeeData(Integer eventId, Integer attendeeId) {
-		return ApiResponse.ofSuccess(informationFacade.deleteAttendeeData(eventId, attendeeId),"Data Deleted Successfully");
-	}
-
-	@Override
-	public ApiResponse<EventAttendeeDetailsDto> updateAttendeeData(Integer eventId, EventAttendeeDetailsDto eventAttendeeDetailsDto) {
-		return ApiResponse.ofSuccess(informationFacade.updateAttendeeData(eventId, eventAttendeeDetailsDto),"Data Successfully Updated");
-	}
-
-	@Override
 	public ApiResponse<List<InformationDto>> getInformationDetails() {
 		return ApiResponse.ofSuccess(informationFacade.getInformationDetails());
 	}
@@ -87,12 +66,6 @@ public class InformationContoller implements InformationApi {
 	@Override
 	public ApiResponse<EventVenueDetailsDto> getVenueDataByEventIdAndVenueId(Integer eventId, Integer venueId) {
 		return ApiResponse.ofSuccess(informationFacade.getVenueDataByEventIdAndVenueId(eventId, venueId));
-	}
-
-	@Override
-	public ApiResponse<EventAttendeeDetailsDto> getAttendeeDataByEventIdAndAttendeeId(Integer eventId,
-			Integer attendeeId) {
-		return ApiResponse.ofSuccess(informationFacade.getAttendeeDataByEventIdAndAttendeeId(eventId, attendeeId));
 	}
 
 }

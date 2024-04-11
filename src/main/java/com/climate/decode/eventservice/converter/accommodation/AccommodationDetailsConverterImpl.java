@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.climate.decode.eventservice.converter.GenericMapper;
 import com.climate.decode.eventservice.dto.accommodation.AccommodationDetailsDto;
-import com.climate.decode.eventservice.dto.information.EventAttendeeDetailsDto;
 import com.climate.decode.eventservice.entity.accommodation.AccommodationDetails;
-import com.climate.decode.eventservice.entity.information.EventAttendeeDetails;
 
 import lombok.RequiredArgsConstructor;
 

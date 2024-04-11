@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.climate.decode.eventservice.dto.information.EventAttendeeDetailsDto;
 import com.climate.decode.eventservice.dto.information.EventVenueDetailsDto;
 import com.climate.decode.eventservice.dto.information.InformationDto;
 import com.climate.decode.eventservice.response.ApiResponse;
@@ -39,7 +38,7 @@ public interface InformationApi {
 	
 	@GetMapping("/{eventId}/venue-detail")
 	public ApiResponse<List<EventVenueDetailsDto>> getVenueDataByEventId(@PathVariable(value = "eventId") Integer eventId);
-	
+
 	@GetMapping("/{eventId}/venue-detail/{venueId}")
 	public ApiResponse<EventVenueDetailsDto> getVenueDataByEventIdAndVenueId(@PathVariable(value = "eventId") Integer eventId, @PathVariable(value = "venueId") Integer venueId);
 
@@ -48,19 +47,4 @@ public interface InformationApi {
 	
 	@PatchMapping("/{eventId}/venue-detail")
 	public ApiResponse<EventVenueDetailsDto> updateVenueData(@PathVariable(value = "eventId") Integer eventId, @RequestBody EventVenueDetailsDto eventVenueDetailsDto);
-	
-	@PostMapping("/{eventId}/attendees-detail")
-	public ApiResponse<EventAttendeeDetailsDto> createAttendeeData(@PathVariable(value = "eventId") Integer eventId, @RequestBody EventAttendeeDetailsDto eventAttendeeDetailsDto);
-	
-	@GetMapping("/{eventId}/attendees-detail")
-	public ApiResponse<List<EventAttendeeDetailsDto>> getAttendeeDataByEventId(@PathVariable(value = "eventId") Integer eventId);
-
-	@GetMapping("/{eventId}/attendees-detail/{attendeeId}")
-	public ApiResponse<EventAttendeeDetailsDto> getAttendeeDataByEventIdAndAttendeeId(@PathVariable(value = "eventId") Integer eventId, @PathVariable(value = "attendeeId") Integer attendeeId);
-
-	@DeleteMapping("/{eventId}/attendees-detail/{attendeeId}")
-	public ApiResponse<String> deleteAttendeeData(@PathVariable(value = "eventId") Integer eventId, @PathVariable(value = "attendeeId") Integer attendeeId);
-	
-	@PatchMapping("/{eventId}/attendees-detail")
-	public ApiResponse<EventAttendeeDetailsDto> updateAttendeeData(@PathVariable(value = "eventId") Integer eventId, @RequestBody EventAttendeeDetailsDto eventAttendeeDetailsDto);
 }

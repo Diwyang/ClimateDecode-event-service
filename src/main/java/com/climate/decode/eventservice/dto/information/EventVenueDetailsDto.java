@@ -2,6 +2,8 @@ package com.climate.decode.eventservice.dto.information;
 
 import java.time.OffsetDateTime;
 
+import com.climate.decode.eventservice.enums.AttendeeType;
+import com.climate.decode.eventservice.enums.EventType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -15,10 +17,13 @@ import lombok.Data;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class EventVenueDetailsDto {
 
-	private int venueId;
+	private int attendeeId;
 	private int eventId;
+	private int noOfInPersonAttendees;
+	private int noOfVirtualAttendees;
+	private int noOfOrganizerAttendees;
 	private String sizeOfVenue;
-	private String venueName;
+	private EventType eventType;
 	private OffsetDateTime eventDateTime;
 	private OffsetDateTime updatedDateTime;
 }
