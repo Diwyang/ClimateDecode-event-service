@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.climate.decode.eventservice.dto.venue.VenueDetailsDto;
 import com.climate.decode.eventservice.response.ApiResponse;
@@ -20,7 +21,7 @@ public interface VenueDetailsApi {
 	public ApiResponse<VenueDetailsDto> createVenueDetails(@PathVariable(value = "eventId") Integer eventId, @RequestBody VenueDetailsDto venueDetailsDto);
 	
 	@GetMapping("")
-	public ApiResponse<List<VenueDetailsDto>> getVenueDetailsByEventId(@PathVariable(value = "eventId") Integer eventId);
+	public ApiResponse<List<VenueDetailsDto>> getVenueDetailsByEventId(@PathVariable(value = "eventId") Integer eventId, @RequestParam(name = "filterEnergyType", required = false, defaultValue = " ")String filterEnergyTypeValue);
 	
 	@GetMapping("/{venueId}")
 	public ApiResponse<VenueDetailsDto> getVenueDetailsByVenueId(@PathVariable(value = "eventId") Integer eventId, @PathVariable(value = "venueId") Integer venueId);

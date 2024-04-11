@@ -32,8 +32,8 @@ public class VenueController implements VenueDetailsApi {
 	}
 
 	@Override
-	public ApiResponse<List<VenueDetailsDto>> getVenueDetailsByEventId(Integer eventId) {
-		return ApiResponse.ofSuccess(venueFacade.getVenueDetailsByEventId(eventId));
+	public ApiResponse<List<VenueDetailsDto>> getVenueDetailsByEventId(Integer eventId, String filterEnergyTypeValue) {
+		return ApiResponse.ofSuccess(venueFacade.getVenueDetailsByEventId(eventId, filterEnergyTypeValue));
 	}
 
 	@Override

@@ -48,15 +48,20 @@ public class VenueFacadeImpl implements VenueFacade {
 	}
 
 	@Override
-	public List<VenueDetailsDto> getVenueDetailsByEventId(Integer eventId) {
+	public List<VenueDetailsDto> getVenueDetailsByEventId(Integer eventId, String filterEnergyTypeValue) {
 		log.info("VenueFacadeImpl getVenueDetailsByEventId  {}", eventId);
 		List<VenueDetailsDto> lstVenueDetailsDto = new ArrayList<>();
 		if (!informationService.getInformationByEventId(eventId).isEmpty()) {
-			List<VenueDetails> lstVenueDetails = venueService
-					.getVenueDataByEventId(eventId);
-			if (lstVenueDetails.size() > 0) {
+			List<VenueDetails> lstVenueDetails = venueService.getVenueDataByEventId(eventId);
+			if (!lstVenueDetails.isEmpty()) {
 				for (VenueDetails venueDetail : lstVenueDetails) {
-					lstVenueDetailsDto.add(venueDetailsConverter.toDto(venueDetail));
+					if(filterEnergyTypeValue != null && " ".equalsIgnoreCase(filterEnergyTypeValue)) {
+						lstVenueDetailsDto.add(venueDetailsConverter.toDto(venueDetail));
+					} else {
+						if(venueDetail.getEnergyType().name().equalsIgnoreCase(filterEnergyTypeValue)){
+							lstVenueDetailsDto.add(venueDetailsConverter.toDto(venueDetail));
+						}
+					}
 				}
 			}
 			return lstVenueDetailsDto;

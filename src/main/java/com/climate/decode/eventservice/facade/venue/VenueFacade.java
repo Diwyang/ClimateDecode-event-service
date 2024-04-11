@@ -16,7 +16,7 @@ public interface VenueFacade {
 
 	public VenueDetailsDto createVenueDetails(Integer eventId, VenueDetailsDto venueDetailsDto);
 
-	public List<VenueDetailsDto> getVenueDetailsByEventId(Integer eventId);
+	public List<VenueDetailsDto> getVenueDetailsByEventId(Integer eventId, String filterEnergyTypeValue);
 	
 	public VenueDetailsDto getVenueDetailsByEventIdAndVenueId(Integer eventId, Integer venueId);
 
