@@ -41,7 +41,7 @@ public class InformationFacadeImpl implements InformationFacade {
 			Iterator<EventVenueDetailsDto> attendeeListItr = payload.getVenueDetailList().iterator();
 			while(attendeeListItr.hasNext()) {
 				EventVenueDetailsDto dto = attendeeListItr.next();
-				infoDto.getVenueDetailList().add(createVenueData(information.getEventId(), dto));
+				infoDto.getVenueDetailList().add(createVenueData(infoDto.getEventId(), dto));
 			}
 		}
 		
