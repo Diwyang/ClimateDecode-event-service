@@ -28,5 +28,7 @@ public class InformationDto {
 	private OffsetDateTime eventEndDate;
 	private int totalNoOfDays;
 	private OffsetDateTime updatedDateTime;
+	private String eventStatus = "PRE";
 	private List<EventVenueDetailsDto> venueDetailList = new ArrayList<>();
+	private int orgId;
 }

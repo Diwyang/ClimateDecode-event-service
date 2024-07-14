@@ -20,6 +20,8 @@ public class MealDetailsDto {
 	private int mealId;
 	private int eventId;
 	private MealType mealType;
+	private int noOfMealServed;
+	private String mealUnit;
 	private BigDecimal perVegMealNoFoodTruck;
 	private BigDecimal perVegMealWithFoodTruck;
 	private int noOfFoodTruck;

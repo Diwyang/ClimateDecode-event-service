@@ -3,10 +3,7 @@ package com.climate.decode.eventservice.entity.waste;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
-import com.climate.decode.eventservice.entity.venue.VenueDetails;
 import com.climate.decode.eventservice.enums.DisposalTreatmentType;
-import com.climate.decode.eventservice.enums.EnergyType;
-import com.climate.decode.eventservice.enums.VenueOriginType;
 import com.climate.decode.eventservice.enums.WasteOriginType;
 import com.climate.decode.eventservice.enums.WasteType;
 import com.fasterxml.jackson.annotation.JsonInclude;

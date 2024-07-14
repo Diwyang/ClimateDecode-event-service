@@ -26,6 +26,8 @@ public interface InformationApi {
 	@GetMapping("")
 	public ApiResponse<List<InformationDto>> getInformationDetails();
 
+	@GetMapping("/organisation/{orgId}")
+	public ApiResponse<List<InformationDto>> getInformationDetailsByOrg(@PathVariable(value = "orgId") Integer orgId);
 	
 	@DeleteMapping("/{eventId}")
 	public ApiResponse<String> deleteInformationData(@PathVariable(value = "eventId") Integer eventId);

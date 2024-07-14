@@ -6,7 +6,6 @@ package com.climate.decode.eventservice.facade.freightmaterial;
 import java.util.List;
 
 import com.climate.decode.eventservice.dto.freightmaterial.FreightMaterialDetailsDto;
-import com.climate.decode.eventservice.dto.material.MaterialDetailsDto;
 
 /**
  * @author diwya

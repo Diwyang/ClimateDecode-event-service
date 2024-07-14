@@ -4,7 +4,6 @@
 package com.climate.decode.eventservice.facade.accommodation;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.climate.decode.eventservice.dto.accommodation.AccommodationDetailsDto;
 

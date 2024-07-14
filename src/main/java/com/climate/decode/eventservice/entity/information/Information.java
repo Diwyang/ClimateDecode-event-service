@@ -54,4 +54,10 @@ public class Information {
 	@Column(name="update_date_time")
 	private OffsetDateTime updatedDateTime;
 	
+	@Column(name="event_status")
+	private String eventStatus;
+	
+	@Column(name="org_id")
+	private int orgId;
+	
 }

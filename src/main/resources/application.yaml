@@ -1,9 +1,18 @@
 spring:
   application:
     name: event-service
-
+  cloud:
+    consul:
+      host: ${CONSUL_HOST}
+      port: ${CONSUL_PORT}
+      discovery:
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 20s
+        enabled: true
+        prefer-ip-address: true
+        ip-address: localhost
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     password: ${DB_PASSWORD}
     username: ${DB_USERNAME}
     url: ${CD_DB_URL}
@@ -15,5 +24,10 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
 
+logging:
+  level:
+    org.dozer: "debug"
+    org.hibernate: "error"
+    
 server:
   port: ${PORT:9091}

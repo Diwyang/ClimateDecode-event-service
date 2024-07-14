@@ -32,6 +32,12 @@ public class MealDetails {
 	@Column(name="meal_type")
 	private MealType mealType;
 	
+	@Column(name="no_of_meal_served")
+	private int noOfMealServed;
+	
+	@Column(name="meal_unit")
+	private String mealUnit;
+	
 	@Column(name="per_veg_meal_no_food_truck")
 	private BigDecimal perVegMealNoFoodTruck;
 	

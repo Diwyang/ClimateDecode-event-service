@@ -12,6 +12,8 @@ public interface InformationFacade {
 	public InformationDto getInformationByEventId(Integer eventId);
 	
 	public List<InformationDto> getInformationDetails();
+	
+	public List<InformationDto> getInformationDetailsByOrg(Integer orgId);
 
 	public String deleteInformationData(Integer eventId);
 

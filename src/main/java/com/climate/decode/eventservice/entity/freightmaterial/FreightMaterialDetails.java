@@ -37,7 +37,7 @@ public class FreightMaterialDetails {
 	private int eventId;
 		
 	@Column(name="mode_of_transport")
-	private ModeOfFreightType modeOfTransport;
+	private String modeOfTransport;
 	
 	@Column(name="mode_of_transport_other")
 	private String modeOfTransportOther;

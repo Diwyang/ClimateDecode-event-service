@@ -129,6 +129,17 @@ public class InformationFacadeImpl implements InformationFacade {
 		}
 		return lstInformationDto;
 	}
+	
+	@Override
+	public List<InformationDto> getInformationDetailsByOrg(Integer orgId) {
+		log.info("InformationFacadeImpl getInformationDetailsByOrg");
+		List<InformationDto> lstInformationDto = new ArrayList<>();
+		List<Information> lstInformation = informationService.getInformationDetailsByOrg(orgId);
+		for (Information information : lstInformation) {
+			lstInformationDto.add(informationConverter.toDto(information));
+		}
+		return lstInformationDto;
+	}
 
 	@Override
 	public EventVenueDetailsDto getVenueDataByEventIdAndVenueId(Integer eventId, Integer venueId) {

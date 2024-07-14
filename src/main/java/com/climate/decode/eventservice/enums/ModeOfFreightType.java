@@ -8,13 +8,13 @@ public enum ModeOfFreightType {
 
 	public static class Names {
 		public static final String VAN = "Van";
-		public static final String LIGHTTRUCK = "Light Truck";
-		public static final String HEAVYTRUCK = "Heavy Truck";
-		public static final String HEAVYTRUCKTRAILER = "Heavy Truck With Trailer";
-		public static final String CARGOSHIP = "Cargo Ship";
-		public static final String TRAIN = "Train";
-		public static final String FLIGHT = "Flight";
-		public static final String OTHER = "Other";
+		public static final String LIGHTTRUCK = "LIGHTTRUCK";
+		public static final String HEAVYTRUCK = "HEAVYTRUCK";
+		public static final String HEAVYTRUCKTRAILER = "HEAVYTRUCKTRAILER";
+		public static final String CARGOSHIP = "CARGOSHIP";
+		public static final String TRAIN = "TRAIN";
+		public static final String FLIGHT = "FLIGHT";
+		public static final String OTHER = "OTHER";
 		
 	}
 

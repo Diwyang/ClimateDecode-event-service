@@ -22,9 +22,12 @@ public class VenueDetailsDto {
 	private int eventId;
 	private EnergyType energyType;
 	private BigDecimal annualConsumption;
+	private String annualConsumptionUnit = "kWh";
 	private BigDecimal percantageRenewableEnergy;
 	private BigDecimal eventPeriodConsumption;
+	private String eventPeriodConsumptionUnit = "kWh/m2";
 	private BigDecimal perGuestConsumption;
+	private String perGuestConsumptionUnit = "kWh/guest";
 	private VenueOriginType originType;
 	private int unit;
 	private String fuelType;

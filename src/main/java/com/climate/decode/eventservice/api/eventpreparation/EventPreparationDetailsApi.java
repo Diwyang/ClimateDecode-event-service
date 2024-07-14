@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.climate.decode.eventservice.dto.eventpreparation.EventPreparationDetailsDto;
 import com.climate.decode.eventservice.response.ApiResponse;
 
-@RequestMapping("/events/{eventId}/eventPreparation-details")
+@RequestMapping("/events/{eventId}/event-preparation-details")
 public interface EventPreparationDetailsApi {
 
 	@PostMapping("")

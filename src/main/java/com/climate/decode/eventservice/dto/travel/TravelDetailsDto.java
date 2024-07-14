@@ -3,6 +3,7 @@
  */
 package com.climate.decode.eventservice.dto.travel;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 import com.climate.decode.eventservice.enums.PeopleTravelType;
@@ -34,7 +35,7 @@ public class TravelDetailsDto {
 	
 	private TransportType typeOfTransport;
 	
-	private int percentageTravelling;
+	private BigDecimal percentageTravelling;
 	
 	private PeopleTravelType peopleTravelling;
 	

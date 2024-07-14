@@ -8,8 +8,6 @@ import java.time.OffsetDateTime;
 import com.climate.decode.eventservice.enums.FuelType;
 import com.climate.decode.eventservice.enums.ModeOfTransportType;
 import com.climate.decode.eventservice.enums.PeopleTravelType;
-import com.climate.decode.eventservice.enums.TransportType;
-import com.climate.decode.eventservice.enums.TravelDistanceType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -61,8 +59,14 @@ public class TransportDetails {
 	@Column(name="distance_travelled")
 	private int distanceTravelled;
 	
+	@Column(name="distance_travelled_unit")
+	private String distanceTravelledUnit;
+	
 	@Column(name="fuel_consumption")
 	private int fuelConsumption;
+	
+	@Column(name="fuel_consumption_unit")
+	private String fuelConsumptionUnit;
 	
 	@Column(name="fuel_type")
 	private FuelType fuelType;

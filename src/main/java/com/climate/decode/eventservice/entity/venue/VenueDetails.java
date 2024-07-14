@@ -36,14 +36,23 @@ public class VenueDetails {
 	@Column(name="annual_consumption")
 	private BigDecimal annualConsumption;
 	
+	@Column(name="annual_consumption_unit")
+	private String annualConsumptionUnit;
+	
 	@Column(name="percantage_renewable_energy")
 	private BigDecimal percantageRenewableEnergy;
 	
 	@Column(name="event_period_consumption")
 	private BigDecimal eventPeriodConsumption;
 	
+	@Column(name="event_period_consumption_unit")
+	private String eventPeriodConsumptionUnit;
+	
 	@Column(name="per_guest_consumption")
 	private BigDecimal perGuestConsumption;
+	
+	@Column(name="per_guest_consumption_unit")
+	private String perGuestConsumptionUnit;
 	
 	@Column(name="origin_type")
 	private VenueOriginType originType;

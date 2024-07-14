@@ -39,6 +39,7 @@ public class EventPreparationFacadeImpl implements EventPreparationFacade {
 		log.info("EventPreparationFacadeImpl createEventPreparationDetails {}", payload);
 		if (!informationService.getInformationByEventId(eventId).isEmpty()) {
 			payload.setEventId(eventId);
+			payload.setEventDateTime(OffsetDateTime.now());
 			payload.setUpdatedDateTime(OffsetDateTime.now());
 			EventPreparationDetails eventPreparationDetails = eventPreparationDetailsConverter.toEntity(payload);
 			return eventPreparationDetailsConverter

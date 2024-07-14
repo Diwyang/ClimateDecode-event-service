@@ -5,7 +5,7 @@ package com.climate.decode.eventservice.dto.freightmaterial;
 
 import java.time.OffsetDateTime;
 
-import com.climate.decode.eventservice.enums.ModeOfTransportType;
+import com.climate.decode.eventservice.enums.ModeOfFreightType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -28,7 +28,7 @@ public class FreightMaterialDetailsDto {
 	
 	private int eventId;
 	
-	private ModeOfTransportType modeOfTransport;
+	private ModeOfFreightType modeOfTransport;
 
 	private String modeOfTransportOther;
 

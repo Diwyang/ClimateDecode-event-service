@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.climate.decode.eventservice.dto.freightmaterial.FreightMaterialDetailsDto;
 import com.climate.decode.eventservice.response.ApiResponse;
 
-@RequestMapping("/events/{eventId}/freight-details")
+@RequestMapping("/events/{eventId}/freight-material-details")
 public interface FreightMaterialDetailsApi {
 
 	@PostMapping("")

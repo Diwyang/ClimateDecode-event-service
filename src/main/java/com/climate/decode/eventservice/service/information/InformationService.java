@@ -31,5 +31,7 @@ public interface InformationService {
 	public List<Information> getInformationDetails();
 	
 	public Optional<EventVenueDetails> getVenueDataByEventIdAndVenueId(Integer eventId, Integer venueId);
+
+	List<Information> getInformationDetailsByOrg(Integer orgId);
 	
 }

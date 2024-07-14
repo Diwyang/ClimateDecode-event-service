@@ -29,6 +29,16 @@ public class InformationContoller implements InformationApi {
 	}
 
 	@Override
+	public ApiResponse<List<InformationDto>> getInformationDetails() {
+		return ApiResponse.ofSuccess(informationFacade.getInformationDetails());
+	}
+	
+	@Override
+	public ApiResponse<List<InformationDto>> getInformationDetailsByOrg(Integer orgId) {
+		return ApiResponse.ofSuccess(informationFacade.getInformationDetailsByOrg(orgId));
+	}
+	
+	@Override
 	public ApiResponse<String> deleteInformationData(Integer eventId) {
 		return ApiResponse.ofSuccess(informationFacade.deleteInformationData(eventId),"Data Deleted Successfully");
 	}
@@ -56,11 +66,6 @@ public class InformationContoller implements InformationApi {
 	@Override
 	public ApiResponse<EventVenueDetailsDto> updateVenueData(Integer eventId, EventVenueDetailsDto eventVenueDetailsDto) {
 		return ApiResponse.ofSuccess(informationFacade.updateVenueData(eventId, eventVenueDetailsDto),"Data Successfully Updated");
-	}
-
-	@Override
-	public ApiResponse<List<InformationDto>> getInformationDetails() {
-		return ApiResponse.ofSuccess(informationFacade.getInformationDetails());
 	}
 
 	@Override

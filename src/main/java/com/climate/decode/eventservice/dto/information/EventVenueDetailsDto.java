@@ -2,7 +2,6 @@ package com.climate.decode.eventservice.dto.information;
 
 import java.time.OffsetDateTime;
 
-import com.climate.decode.eventservice.enums.AttendeeType;
 import com.climate.decode.eventservice.enums.EventType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

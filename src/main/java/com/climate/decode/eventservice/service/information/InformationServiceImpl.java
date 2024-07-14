@@ -89,4 +89,10 @@ public class InformationServiceImpl implements InformationService {
 			throw new ResourceNotFoundException("Venue not found with ID " + eventVenueDetails.getVenueId());
 		}
 	}
+	
+
+	@Override
+	public List<Information> getInformationDetailsByOrg(Integer orgId) {
+		return informationRepo.getByOrgId(orgId);
+	}
 }

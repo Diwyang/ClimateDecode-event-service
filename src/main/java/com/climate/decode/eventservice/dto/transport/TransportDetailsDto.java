@@ -44,8 +44,12 @@ public class TransportDetailsDto {
 
 	private int distanceTravelled;
 
+	private String distanceTravelledUnit ="km";
+	
 	private int fuelConsumption;
 
+	private String fuelConsumptionUnit = "m3";
+	
 	private FuelType fuelType;
 
 	private String fuelTypeOther;
