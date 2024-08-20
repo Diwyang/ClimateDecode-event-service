@@ -9,10 +9,12 @@ spring:
         healthCheckPath: /actuator/health
         healthCheckInterval: 20s
         enabled: true
-#        prefer-ip-address: true
-#        ip-address: localhost
+        prefer-ip-address: true
+        #ip-address: localhost
+    inetutils:
+      ignored-interfaces: eth0
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     password: ${DB_PASSWORD}
     username: ${DB_USERNAME}
     url: ${CD_DB_URL}
@@ -22,7 +24,18 @@ spring:
       ddl-auto: none
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+management:
+  endpoints:
+    health:
+      show-details: always
+      db:
+        enabled: false
+    web:
+      exposure:
+        include: health
+        base-path: /actuator
 
 logging:
   level:
