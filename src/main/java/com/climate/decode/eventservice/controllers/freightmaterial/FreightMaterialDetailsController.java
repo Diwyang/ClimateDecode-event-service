@@ -5,6 +5,7 @@ package com.climate.decode.eventservice.controllers.freightmaterial;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.climate.decode.eventservice.api.freightmaterial.FreightMaterialDetailsApi;
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
  *
  */
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequiredArgsConstructor
 @RestController
 public class FreightMaterialDetailsController implements FreightMaterialDetailsApi {
