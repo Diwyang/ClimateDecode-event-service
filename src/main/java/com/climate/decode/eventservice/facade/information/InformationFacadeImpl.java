@@ -125,7 +125,9 @@ public class InformationFacadeImpl implements InformationFacade {
 		List<InformationDto> lstInformationDto = new ArrayList<>();
 		List<Information> lstInformation = informationService.getInformationDetails();
 		for (Information information : lstInformation) {
-			lstInformationDto.add(informationConverter.toDto(information));
+			InformationDto infoDto = informationConverter.toDto(information);
+			infoDto.getVenueDetailList().addAll(getVenueDataByEventId(infoDto.getEventId()));
+			lstInformationDto.add(infoDto);
 		}
 		return lstInformationDto;
 	}
@@ -136,7 +138,9 @@ public class InformationFacadeImpl implements InformationFacade {
 		List<InformationDto> lstInformationDto = new ArrayList<>();
 		List<Information> lstInformation = informationService.getInformationDetailsByOrg(orgId);
 		for (Information information : lstInformation) {
-			lstInformationDto.add(informationConverter.toDto(information));
+			InformationDto infoDto = informationConverter.toDto(information);
+			infoDto.getVenueDetailList().addAll(getVenueDataByEventId(infoDto.getEventId()));
+			lstInformationDto.add(infoDto);
 		}
 		return lstInformationDto;
 	}
