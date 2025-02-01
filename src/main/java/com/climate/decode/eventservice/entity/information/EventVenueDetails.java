@@ -38,7 +38,7 @@ public class EventVenueDetails {
 	private int noOfOrganizerAttendees;
 	
 	@Column(name="event_type")
-	private EventType eventType;
+	private String eventType;
 	
 	@Column(name="size_of_venue")
 	private String sizeOfVenue;
